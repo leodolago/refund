@@ -7,6 +7,7 @@ const form = document.querySelector("form")
 // Seleciona os elementos da lista.
 const expenseList = document.querySelector("ul")
 const expenseQuantity = document.querySelector("aside header p span")
+const expenseTotal = document.querySelector("aside header h2")
 
 amount.oninput = () => {
   // Obtém o valor atual do input e remove os caracteres não numéricos.
@@ -107,6 +108,38 @@ function updateTotals() {
     expenseQuantity.textContent = `${items.length} ${
       items.length > 1 ? "despesas" : "despesa"
     }`
+
+    // Variavel para incrementar o total.
+    let total = 0
+    // Percore cada item da lista
+    for (let item = 0; item < items.length; item++) {
+      const itemAmount = items[item].querySelector(".expense-amount")
+
+      //Remover caracteres não numéricos e substituir a vírgula por ponto.
+      let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+
+      value = parseFloat(value)
+      
+      // Verifica se é um número válido.
+      if(isNaN(value)) {
+        return alert(
+          "Não foi possível calcular o total. O valor não parece ser um número"
+        )
+      }   
+     
+     // Incrementa o valor total.
+     total += Number(value)
+    }
+
+    // Cria a small para adicionar o R$
+    symbolBRL = document.createElement("small")
+    symbolBRL.textContent =  "R$"
+
+    total = formatcurrencyBRL(total).toUpperCase().replace("R$", "")
+
+    expenseTotal.innerHTML = ""
+    expenseTotal.append(symbolBRL, total)
+
   } catch (error) {
     console.log(error)
     alert("Não foi possível atualizar os totais.")
