@@ -1,8 +1,8 @@
 ### About the Project
 
 It’s a JavaScript app for reimbursement requests and expense listing.   
-Trabalhando com js, html e css.  
-Projeto realizado no MBA Rocketseat Full-stack. (https://www.rocketseat.com.br/mba)  
+The project uses JavaScript, HTML, and CSS.  
+It was developed as part of the Rocketseat Full-stack MBA. (https://www.rocketseat.com.br/mba)  
 
 ### View 
 
